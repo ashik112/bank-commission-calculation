@@ -1,0 +1,34 @@
+{
+  "name": "bank-transaction-commission-calculator",
+  "version": "0.0.1",
+  "description": "paysera js task",
+  "source": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build"
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "author": "Md. Ashekur Rahman",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/register": "^7.18.9",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^28.1.3",
+    "parcel": "^2.6.2",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
