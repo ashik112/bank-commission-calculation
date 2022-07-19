@@ -4,6 +4,11 @@ const USER_TYPES = require('../../constants');
  *
  */
 class UserProvider {
+  /**
+   *
+   * @param {*} params
+   * @returns
+   */
   getUserInstance(params) {
     const { user_type: userType } = params;
     switch (userType) {

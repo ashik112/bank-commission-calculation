@@ -1,21 +1,10 @@
 const { USER_TYPES } = require('../../constants');
 const Configuration = require('../Configuration');
+const User = require('./User');
 
-/**
- *
- */
-class User {
-  constructor(params) {
-    this.userId = params.userId;
-    this.userType = params.userType;
-  }
-
-  /**
-   *
-   * @param {*} params
-   */
-  getCashInCommissionFee(amount) {
-    const config = Configuration.getCashInByUserType(USER_TYPES.natural);
+class LegalUser extends User {
+  getCashOutCommissionFee(amount) {
+    const config = Configuration.getCashOutByUserType(USER_TYPES.juridical);
     const percentage = config.percents;
     const minAmount = config.min ? config.min.amount : 0;
     const maxAmount = config.max ? config.max.amount : amount;
@@ -27,12 +16,6 @@ class User {
     }
     return fee.toFixed(2);
   }
-
-  /**
-   *
-   * @param {*} params
-   * @returns
-   */
-  getCashOutCommissionFee() {}
 }
-module.exports = User;
+
+module.exports = LegalUser;

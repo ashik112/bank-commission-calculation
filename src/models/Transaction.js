@@ -1,5 +1,6 @@
 const constants = require('../constants');
-const { NaturalUser, LegalUser } = require('./Users/User');
+const LegalUser = require('./Users/LegalUser');
+const NaturalUser = require('./Users/NaturalUser');
 
 class Transaction {
   constructor(params) {
@@ -15,36 +16,50 @@ class Transaction {
     this.userType = userType;
     this.type = type;
     this.operation = operation;
+    this.setUser();
   }
 
+  /**
+   *
+   * @returns
+   */
   getUser() {
+    return this.user;
+  }
+
+  /**
+   *
+   * @returns
+   */
+  setUser() {
     switch (this.userType) {
-      case constants.USER_TYPES.natural:
-        return new NaturalUser({
-          userId: this.userId,
-          userType: this.userType,
-        });
       case constants.USER_TYPES.juridical:
-        return new LegalUser({
+        this.user = new LegalUser({
           userId: this.userId,
           userType: this.userType,
         });
+        break;
+      case constants.USER_TYPES.natural:
       default:
-        return new NaturalUser({
+        this.user = new NaturalUser({
           userId: this.userId,
           userType: this.userType,
         });
+        break;
     }
   }
 
+  /**
+   *
+   * @returns
+   */
   getCommissionFee() {
-    const user = this.getUser();
     switch (this.type) {
       case constants.TRANSACTION_TYPE.cash_in: {
-        return 0;
+        return this.user.getCashInCommissionFee(this.operation.amount);
       }
       case constants.TRANSACTION_TYPE.cash_out: {
-        return user.getCashOutCommissionFee(this.operation.amount);
+        return this.user.getCashOutCommissionFee(this.operation.amount);
       }
       default:
         return 0;
