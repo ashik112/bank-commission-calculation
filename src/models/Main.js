@@ -19,7 +19,7 @@ class Main {
       // eslint-disable-next-line no-await-in-loop
       await transactionInstance.init();
       // eslint-disable-next-line no-await-in-loop
-      const fee = await transactionInstance.getCommissionFee();
+      const fee = (await transactionInstance.getCommissionFee()).toFixed(2);
       console.log(fee);
     }
   }

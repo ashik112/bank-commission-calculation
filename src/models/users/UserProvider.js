@@ -1,4 +1,6 @@
 const USER_TYPES = require('../../constants');
+const LegalUser = require('./LegalUser');
+const NaturalUser = require('./NaturalUser');
 
 /**
  *
@@ -10,15 +12,14 @@ class UserProvider {
    * @returns
    */
   getUserInstance(params) {
-    const { user_type: userType } = params;
-    switch (userType) {
+    switch (params.userType) {
       case USER_TYPES.juridical:
-        return 'legal';
+        return new LegalUser(params);
       case USER_TYPES.natural:
       default:
-        return 'normal';
+        return new NaturalUser(params);
     }
   }
 }
 
-module.exports = UserProvider;
+module.exports = new UserProvider();
