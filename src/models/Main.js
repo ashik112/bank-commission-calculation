@@ -12,8 +12,8 @@ class Main {
     await Configuration.init();
     // console.log(process.argv);
     // console.log(Configuration);
-    // console.log(Configuration.getCashOut());
-    // console.log(Configuration.getCashIn());
+    console.log(Configuration.getCashOut());
+    console.log(Configuration.getCashIn());
     // console.log(fetchCashInConfiguration());
     const myArgs = process.argv.slice(2);
     const inputJsonFilePath = myArgs[0];
