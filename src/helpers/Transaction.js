@@ -1,6 +1,9 @@
 const constants = require('../constants');
-const LegalUser = require('./Users/LegalUser');
-const NaturalUser = require('./Users/NaturalUser');
+const db = require('../db');
+const { getWeekRange } = require('../utils/date');
+const DB = require('./DB');
+const LegalUser = require('./users/LegalUser');
+const NaturalUser = require('./users/NaturalUser');
 
 class Transaction {
   constructor(params) {
@@ -16,7 +19,13 @@ class Transaction {
     this.userType = userType;
     this.type = type;
     this.operation = operation;
+    this.dbInstance = db.Transactions;
     this.setUser();
+  }
+
+  async init() {
+    getWeekRange(this.date);
+    await this.store();
   }
 
   /**
@@ -25,6 +34,18 @@ class Transaction {
    */
   getUser() {
     return this.user;
+  }
+
+  async store() {
+    await DB.insert(this.dbInstance, {
+      date: this.date,
+      user_id: this.userId,
+      user_type: this.userType,
+      type: this.type,
+      amount: this.operation.amount,
+      currency: this.operation.currency,
+    });
+    // console.log({ res });
   }
 
   /**
@@ -66,5 +87,10 @@ class Transaction {
     }
   }
 }
+
+Transaction.fetchAllEntries = async () => {
+  const row = await DB.findAll(db.Transactions);
+  return row;
+};
 
 module.exports = Transaction;
