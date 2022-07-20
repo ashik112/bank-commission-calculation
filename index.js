@@ -7,7 +7,7 @@ require('./src/app');
 db.sequelize
   .sync({ force: false, alter: true, drop: true })
   .then(() => {
-    console.log('re-sync database.');
+    // console.log('re-sync database.');
   })
   .catch((error) => {
     console.log('error: ', error);

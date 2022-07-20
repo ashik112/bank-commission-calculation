@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define('transactions', {
     date: {
-      type: Sequelize.DATEONLY,
+      type: Sequelize.DATE,
       allowNull: false,
     },
     user_id: {

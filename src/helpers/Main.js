@@ -10,24 +10,18 @@ class Main {
    */
   async run() {
     await Configuration.init();
-    // console.log(process.argv);
-    // console.log(Configuration);
-    // console.log(Configuration.getCashOut());
-    // console.log(Configuration.getCashIn());
-    // console.log(fetchCashInConfiguration());
     const myArgs = process.argv.slice(2);
     const inputJsonFilePath = myArgs[0];
-    // console.log({ inputJsonFilePath });
     const transactions = this.getJsonData(inputJsonFilePath);
-    await Promise.all(
-      transactions.map(async (element, index) => {
-        const transaction = new Transaction(element);
-        await transaction.init();
-        // console.log(await Transaction.fetchAllEntries());
-        console.log(index + 1, ' : ', transaction.getCommissionFee());
-      })
-    );
-    // console.log(await Transaction.fetchAllEntries());
+    for (let i = 0; i < transactions.length; i += 1) {
+      const transaction = transactions[i];
+      const transactionInstance = new Transaction(transaction);
+      // eslint-disable-next-line no-await-in-loop
+      await transactionInstance.init();
+      // eslint-disable-next-line no-await-in-loop
+      const fee = await transactionInstance.getCommissionFee();
+      console.log(fee);
+    }
   }
 
   getJsonData(path) {

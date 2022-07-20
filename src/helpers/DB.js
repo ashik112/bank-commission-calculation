@@ -10,13 +10,14 @@ class DB {
     }
   }
 
-  async findAll(instance) {
+  async findAll(instance, options = {}) {
+    // console.log({ options });
     try {
-      const rows = await instance.findAll();
-      // console.log({ data });
+      const rows = await instance.findAll(options);
+      // console.log(rows);
       return rows;
     } catch (e) {
-      console.error({ e });
+      // console.error({ e });
       return [];
     }
   }

@@ -1,6 +1,5 @@
 const constants = require('../constants');
 const db = require('../db');
-const { getWeekRange } = require('../utils/date');
 const DB = require('./DB');
 const LegalUser = require('./users/LegalUser');
 const NaturalUser = require('./users/NaturalUser');
@@ -24,7 +23,6 @@ class Transaction {
   }
 
   async init() {
-    getWeekRange(this.date);
     await this.store();
   }
 
@@ -38,7 +36,7 @@ class Transaction {
 
   async store() {
     await DB.insert(this.dbInstance, {
-      date: this.date,
+      date: new Date(this.date),
       user_id: this.userId,
       user_type: this.userType,
       type: this.type,
@@ -74,17 +72,22 @@ class Transaction {
    *
    * @returns
    */
-  getCommissionFee() {
+  async getCommissionFee() {
+    let fee = 0;
     switch (this.type) {
-      case constants.TRANSACTION_TYPE.cash_in: {
-        return this.user.getCashInCommissionFee(this.operation.amount);
-      }
-      case constants.TRANSACTION_TYPE.cash_out: {
-        return this.user.getCashOutCommissionFee(this.operation.amount);
-      }
+      case constants.TRANSACTION_TYPE.cash_in:
+        fee = await this.user.getCashInCommissionFee(this.operation.amount);
+        break;
+      case constants.TRANSACTION_TYPE.cash_out:
+        fee = await this.user.getCashOutCommissionFee(
+          this.operation.amount,
+          this.date
+        );
+        break;
       default:
-        return 0;
+        break;
     }
+    return fee;
   }
 }
 
