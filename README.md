@@ -1,4 +1,4 @@
-﻿# transaction-commission-calculation
+﻿# Transaction Commission Calculation
 
 Basic Cash In, Cash Out transaction commission calculation application using Node.
 
