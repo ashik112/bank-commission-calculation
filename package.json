@@ -1,7 +1,7 @@
 {
   "name": "bank-transaction-commission-calculator",
   "version": "0.0.1",
-  "description": "paysera js task",
+  "description": "commission fee on transaction js task",
   "source": "index.js",
   "type": "commonjs",
   "scripts": {
