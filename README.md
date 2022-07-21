@@ -49,6 +49,12 @@ Getting configurations for cash in, cash out from live mock APIs. Calculating co
    npm run build
    ```
 
+2. Running the application from build directory
+
+   ```base
+   node dist/index.js data/input.json
+   ```
+
 ## Test
 
    ```bash
