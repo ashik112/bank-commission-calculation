@@ -33,6 +33,10 @@ class Main {
     this.printResult(commissions);
   }
 
+  /**
+   * Output result
+   * @param {*} arr
+   */
   printResult(arr) {
     if (arr && arr.length > 0) {
       const commissions = arr.map((commission) => commission.toFixed(2));
@@ -42,11 +46,19 @@ class Main {
     }
   }
 
+  /**
+   * @returns 3rd value from process.argv
+   */
   getInputFilePath() {
     const myArgs = process.argv.slice(2);
     return myArgs[0];
   }
 
+  /**
+   * Read json file from path
+   * @param {*} path
+   * @returns JSON object
+   */
   getJsonData(path) {
     const rawData = fs.readFileSync(path);
     return JSON.parse(rawData);
