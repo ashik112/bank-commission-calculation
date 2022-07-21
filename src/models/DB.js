@@ -1,4 +1,10 @@
 class DB {
+  /**
+   * Inserts data into table
+   * @param {*} instance
+   * @param {*} data
+   * @returns table data
+   */
   async insert(instance, data) {
     try {
       const response = await instance.create(data);
@@ -10,14 +16,17 @@ class DB {
     }
   }
 
+  /**
+   * Fetches all records from database based on option
+   * @param {*} instance
+   * @param {*} options
+   * @returns Array
+   */
   async findAll(instance, options = {}) {
-    // console.log({ options });
     try {
       const rows = await instance.findAll(options);
-      // console.log(rows);
       return rows;
     } catch (e) {
-      // console.error({ e });
       return [];
     }
   }

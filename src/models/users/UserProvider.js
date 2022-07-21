@@ -7,9 +7,9 @@ const NaturalUser = require('./NaturalUser');
  */
 class UserProvider {
   /**
-   *
+   * Checks for userType and returns User Object
    * @param {*} params
-   * @returns
+   * @returns User
    */
   getUserInstance(params) {
     switch (params.userType) {

@@ -1,5 +1,7 @@
-const constants = require('../constants');
+// const constants = require('../constants');
 const db = require('../db');
+const { calculatePercentage, minMax } = require('../utils');
+const Configuration = require('./Configuration');
 const DB = require('./DB');
 const UserProvider = require('./users/UserProvider');
 
@@ -27,12 +29,15 @@ class Transaction {
 
   /**
    *
-   * @returns
+   * @returns User
    */
   getUser() {
     return this.user;
   }
 
+  /**
+   * Insert transaction details in transaction history in database
+   */
   async store() {
     await DB.insert(this.dbInstance, {
       date: new Date(this.date),
@@ -57,107 +62,89 @@ class Transaction {
 
   /**
    *
-   * @returns
+   * @returns Commission Fee
    */
   async getCommissionFee() {
     let fee = 0;
-    switch (this.type) {
-      case constants.TRANSACTION_TYPE.cash_in:
-        fee = await this.getCashInCommissionFee();
-        break;
-      case constants.TRANSACTION_TYPE.cash_out:
-        fee = await this.getCashOutCommissionFee();
-        break;
-      default:
-        break;
-    }
+    fee = await this.calculateCommissionFee();
     return fee;
   }
 
   /**
-   *
-   * @param {*} params
+   * Returns 0 if commission is 0 else returns calculable amount before the final calculation
+   * @param {*} weeklyTotalAmount
+   * @param {*} config
+   * @returns 0 | calculableAmount
    */
-  async getCashInCommissionFee() {
+  handleTransactionWeeklyLimit(weeklyTotalAmount, config) {
     const { amount } = this.operation;
-    const config = await this.user.getCashInConfig();
+    if (config && config.week_limit && config.week_limit.amount) {
+      const weeklyLimit = config.week_limit.amount;
+      if (weeklyTotalAmount === 0 && amount <= weeklyLimit) return 0;
+      if (weeklyTotalAmount <= weeklyLimit) return 0;
+      if (weeklyTotalAmount === amount) {
+        if (weeklyTotalAmount > weeklyLimit) {
+          return amount - weeklyLimit;
+        }
+      }
+      if (weeklyTotalAmount - amount > weeklyLimit) {
+        return amount;
+      }
+      if (weeklyTotalAmount + amount > weeklyLimit) {
+        return weeklyTotalAmount + amount - weeklyLimit;
+      }
+      return 0;
+    }
+    return null;
+  }
+
+  /**
+   * Do the final commission calculation after handling other factors
+   * @param {*} amount
+   * @param {*} config
+   * @returns
+   */
+  commissionFinalCalculation(amount, config) {
     const percentage = config.percents;
     const minAmount = config.min ? config.min.amount : 0;
     const maxAmount = config.max ? config.max.amount : amount;
-    let fee = (percentage / 100) * amount;
-    if (fee < minAmount) {
-      fee = minAmount;
-    } else if (fee > maxAmount) {
-      fee = maxAmount;
-    }
+    let fee = calculatePercentage(amount, percentage);
+    fee = minMax(fee, maxAmount, minAmount);
     return fee;
   }
 
   /**
-   *
-   * @param {*} params
-   * @returns
+   * Calculate Commission
+   * @returns commission
    */
-
-  async getCashOutCommissionFee() {
+  async calculateCommissionFee() {
     const { amount } = this.operation;
     let calculableAmount = amount;
-    const config = await this.user.getCashOutConfig();
-    if (config.week_limit && config.week_limit.amount) {
-      /* console.log(
-        'user id: ',
-        this.userId,
-        'type: ',
-        this.type,
-        'date: ',
-        new Date(this.date),
-        'amount: ',
-        this.operation.amount
-      ); */
-      const weeklyLimit = config.week_limit.amount;
-      let weeklyTotalAmount = 0;
-      const weeklyAmountArr = await this.user.getWeeklyTransactionAmount(
+    const config = Configuration.getTransactionConfig(
+      this.user.userType,
+      this.type
+    );
+    if (!config) return 0;
+    if (config.week_limit) {
+      let weeklyTotalAmount = await this.user.getWeeklyTransactionAmount(
         this.date,
-        'cash_out'
+        this.type
       );
-      weeklyTotalAmount =
-        weeklyAmountArr.length > 0 && weeklyAmountArr[0].weekly_amount
-          ? weeklyAmountArr[0].weekly_amount
-          : this.amount;
-      if (weeklyTotalAmount <= weeklyLimit) {
-        return 0;
-      }
-      if (weeklyTotalAmount > 0) {
-        if (weeklyTotalAmount === amount) {
-          // first transaction of the week
-          if (amount <= weeklyLimit) {
-            return 0;
-          }
-          if (amount > weeklyLimit) {
-            calculableAmount = amount - weeklyLimit;
-          }
-        } else if (weeklyTotalAmount - amount > weeklyLimit) {
-          calculableAmount = amount;
-        } else if (weeklyTotalAmount + amount > weeklyLimit) {
-          calculableAmount = weeklyTotalAmount + amount - weeklyLimit;
-        } else {
-          return 0;
-        }
+      weeklyTotalAmount = weeklyTotalAmount || amount;
+      const res = this.handleTransactionWeeklyLimit(weeklyTotalAmount, config);
+      if (res !== null) {
+        if (res === 0) return 0;
+        calculableAmount = res;
       }
     }
-    const percentage = config.percents;
-    const minAmount = config.min ? config.min.amount : 0;
-    const maxAmount = config.max ? config.max.amount : calculableAmount;
-    let fee = (percentage / 100) * calculableAmount;
-    if (fee < minAmount) {
-      fee = minAmount;
-    } else if (fee > maxAmount) {
-      fee = maxAmount;
-    }
-    return fee;
+    return this.commissionFinalCalculation(calculableAmount, config);
   }
 }
 
+/**
+ * Fetch all transactions from database
+ * @returns transactions[]
+ */
 Transaction.fetchAllEntries = async () => {
   const row = await DB.findAll(db.Transactions);
   return row;

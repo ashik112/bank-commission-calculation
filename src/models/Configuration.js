@@ -2,7 +2,7 @@ const {
   fetchCashInConfiguration,
   fetchCashOutConfiguration,
 } = require('../clients/api');
-const { USER_TYPES } = require('../constants');
+const { USER_TYPES, TRANSACTION_TYPE } = require('../constants');
 
 class Configuration {
   constructor() {
@@ -56,12 +56,28 @@ class Configuration {
   }
 
   getCashOutByUserType(userType) {
-    // console.log(this.cashOut);
     return this.cashOut[userType];
   }
 
   getCashInByUserType(userType) {
     return this.cashIn[userType];
+  }
+
+  /**
+   *
+   * @param {*} userType
+   * @param {*} transactionType
+   * @returns
+   */
+  getTransactionConfig(userType, transactionType) {
+    switch (transactionType) {
+      case TRANSACTION_TYPE.cash_in:
+        return this.getCashInByUserType(userType);
+      case TRANSACTION_TYPE.cash_out:
+        return this.getCashOutByUserType(userType);
+      default:
+        return null;
+    }
   }
 }
 

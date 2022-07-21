@@ -14,18 +14,13 @@ class User {
   }
 
   /**
-   *
+   * Returns total transaction amount from first day of the week (Monday) to transaction date
    * @param {*} date
-   * @param {*} type
+   * @param {*} transactionType ('cash_in' | 'cash_out')
+   * @returns
    */
   async getWeeklyTransactionAmount(date, type) {
     const startDate = getFirsDayOfWeek(date);
-
-    /* console.log({
-      start: startDate.toUTCString(),
-      currentDate: new Date(date).toUTCString(),
-      end: new Date(date).toUTCString(),
-    }); */
     const option = {
       attributes: [[fn('sum', col('amount')), 'weekly_amount']],
       raw: true,
@@ -43,20 +38,23 @@ class User {
     };
     try {
       const data = await DB.findAll(db.Transactions, option);
-      return data;
+      if (data && data.length > 0 && data[0].weekly_amount) {
+        return data[0].weekly_amount;
+      }
+      return null;
     } catch (e) {
       console.log(e);
-      return [];
+      return null;
     }
   }
 
   async getCashOutConfig() {
-    const config = await Configuration.getCashOutByUserType(this.userType);
+    const config = Configuration.getCashOutByUserType(this.userType);
     return config;
   }
 
   async getCashInConfig() {
-    const config = await Configuration.getCashInByUserType(this.userType);
+    const config = Configuration.getCashInByUserType(this.userType);
     return config;
   }
 }
