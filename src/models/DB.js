@@ -22,7 +22,7 @@ class DB {
    * @param {*} options
    * @returns Array
    */
-  async findAll(instance, options = {}) {
+  async findAll(instance, options = { raw: true }) {
     try {
       const rows = await instance.findAll(options);
       return rows;

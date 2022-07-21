@@ -17,6 +17,7 @@ class Main {
     }
 
     await Configuration.init();
+    const commissions = [];
     const transactions = this.getJsonData(inputJsonFilePath);
     for (let i = 0; i < transactions.length; i += 1) {
       const transaction = transactions[i];
@@ -26,12 +27,19 @@ class Main {
       // eslint-disable-next-line no-await-in-loop
       let commission = await transactionInstance.getCommissionFee();
       commission = roundNumber(commission);
-      this.printCommission(commission);
+      // this.printCommission(commission);
+      commissions.push(commission);
     }
+    this.printResult(commissions);
   }
 
-  printCommission(commission) {
-    console.log(commission.toFixed(2));
+  printResult(arr) {
+    if (arr && arr.length > 0) {
+      const commissions = arr.map((commission) => commission.toFixed(2));
+      console.log(commissions.join('\n'));
+    } else {
+      console.log('');
+    }
   }
 
   getInputFilePath() {
