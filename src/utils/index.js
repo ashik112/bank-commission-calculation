@@ -1,8 +1,9 @@
 function minMax(amount, max, min) {
   let value = amount;
-  if (value < min) {
+  if (min && value < min) {
     value = min;
-  } else if (value > max) {
+  }
+  if (max && value > max) {
     value = max;
   }
   return value;

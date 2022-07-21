@@ -60,7 +60,6 @@ describe('tests for User class', () => {
       new Date('2016-01-06'),
       TRANSACTION_TYPE.cash_out
     );
-    console.log({ result });
     expect(result).toBe(800);
   });
 });
