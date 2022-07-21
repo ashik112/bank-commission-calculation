@@ -1,9 +1,9 @@
 const Main = require('./Main');
-const dummyTransactionList = require('../../data/input.json');
+const dummyTransactionList = require('../../tests/input.json');
 const db = require('../db');
 
 const initializeProcessArgs = () => {
-  process.argv.push('data/input.json');
+  process.argv.push('tests/input.json');
 };
 const resetProcessArgs = () => {
   process.argv.pop();
@@ -21,7 +21,7 @@ describe('tests for Main class', () => {
     initializeProcessArgs();
     const cli = new Main();
     cli.getInputFilePath();
-    expect(cli.getInputFilePath()).toBe('data/input.json');
+    expect(cli.getInputFilePath()).toBe('tests/input.json');
     resetProcessArgs();
   });
 
