@@ -1,4 +1,5 @@
 const { Op, fn, col } = require('sequelize');
+const { USER_TYPES } = require('../../constants');
 const db = require('../../db');
 const { getFirsDayOfWeek } = require('../../utils/date');
 const Configuration = require('../Configuration');
@@ -9,8 +10,8 @@ const DB = require('../DB');
  */
 class User {
   constructor(params) {
-    this.userId = params.userId;
-    this.userType = params.userType;
+    this.userId = (params && params.userId) || null;
+    this.userType = (params && params.userType) || USER_TYPES.natural;
   }
 
   /**

@@ -113,6 +113,17 @@ describe('tests for Transaction class', () => {
     expect(transaction).toBeDefined();
     await resetDatabase();
   });
+
+  it('user object can be accessed', async () => {
+    const transaction = new Transaction({
+      date: '2016-01-05',
+      user_id: 1,
+      user_type: 'natural',
+      type: 'cash_in',
+      operation: { amount: 200.0, currency: 'EUR' },
+    });
+    expect(transaction.user).toBeDefined();
+  });
   it('commission fee should be 0.06', async () => {
     // await resetDatabase();
     await populateDatabase();
@@ -154,5 +165,31 @@ describe('tests for Transaction class', () => {
     const fee = await transaction.getCommissionFee();
     expect(fee).toBe(0.9);
     // await resetDatabase();
+  });
+  it('can handle weekly limit', async () => {
+    // await resetDatabase();
+    await populateDatabase();
+    const transaction = new Transaction({
+      date: '2016-01-10',
+      user_id: 1,
+      user_type: 'natural',
+      type: 'cash_out',
+      operation: { amount: 100.0, currency: 'EUR' },
+    });
+    const weeklyTotalAmount = await transaction.user.getWeeklyTransactionAmount(
+      transaction.date,
+      transaction.type
+    );
+    const fee = await transaction.handleTransactionWeeklyLimit(
+      weeklyTotalAmount,
+      {
+        percents: 0.3,
+        week_limit: {
+          amount: 1000,
+          currency: 'EUR',
+        },
+      }
+    );
+    expect(fee).toBe(100);
   });
 });

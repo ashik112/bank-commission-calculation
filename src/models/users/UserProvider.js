@@ -12,7 +12,7 @@ class UserProvider {
    * @returns User
    */
   getUserInstance(params) {
-    switch (params.userType) {
+    switch (params && params.userType) {
       case USER_TYPES.juridical:
         return new LegalUser(params);
       case USER_TYPES.natural:
