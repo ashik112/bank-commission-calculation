@@ -10,8 +10,7 @@ class Main {
    * Runs the application
    */
   async run() {
-    const myArgs = process.argv.slice(2);
-    const inputJsonFilePath = myArgs[0];
+    const inputJsonFilePath = this.getInputFilePath();
     if (!inputJsonFilePath) {
       console.log('Please enter the path of the json file');
       return;
@@ -33,6 +32,11 @@ class Main {
 
   printCommission(commission) {
     console.log(commission.toFixed(2));
+  }
+
+  getInputFilePath() {
+    const myArgs = process.argv.slice(2);
+    return myArgs[0];
   }
 
   getJsonData(path) {

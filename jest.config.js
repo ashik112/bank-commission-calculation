@@ -2,6 +2,7 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = async () => {
   return {
+    roots: ['<rootDir>/src'],
     verbose: true,
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
     testPathIgnorePatterns: ['/node_modules/', '/dist/'],
@@ -24,6 +25,6 @@ module.exports = async () => {
 
     // Indicates which provider should be used to instrument code for coverage
     coverageProvider: 'v8',
-    setupFiles: ['dotenv/config'],
+    setupFiles: ['<rootDir>/tests/dotenv.config.js'],
   };
 };

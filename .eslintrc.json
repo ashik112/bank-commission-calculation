@@ -6,7 +6,8 @@
   },
   "env": {
     "node": true,
-    "es6": false
+    "es6": false,
+    "jest/globals": true
   },
   "parserOptions": {
     "sourceType": "module"
@@ -26,5 +27,24 @@
     "object-shorthand": "off",
     "class-methods-use-this": "off",
     "quotes": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.js"],
+      "plugins": ["jest"],
+      "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest/style",
+        "plugin:jest/all"
+      ],
+      "rules": {
+        "jest/prefer-expect-assertions": "off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
+      }
+    }
+  ]
 }
