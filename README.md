@@ -33,12 +33,6 @@ Getting configurations for cash in, cash out from live mock APIs. Calculating co
 
     For unit testing, configs for database are in `.env.test`
 
-## Test
-
-   ```bash
-   npm run test
-   ```
-
 ## Run
 
 1. Inside the root project directory. `.` refers to `index.js` in root project directory. `data/input.json` is the input file path. Change file path according to need.
@@ -53,6 +47,12 @@ Getting configurations for cash in, cash out from live mock APIs. Calculating co
 
    ```bash
    npm run build
+   ```
+
+## Test
+
+   ```bash
+   npm run test
    ```
 
 ## Known limitations
