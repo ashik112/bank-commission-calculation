@@ -1,5 +1,6 @@
 const Main = require('./Main');
 const dummyTransactionList = require('../../data/input.json');
+const db = require('../db');
 
 const initializeProcessArgs = () => {
   process.argv.push('data/input.json');
@@ -50,7 +51,7 @@ describe('tests for Main class', () => {
   });
 
   // eslint-disable-next-line jest/no-commented-out-tests
-  /* it('prints expected output', async () => {
+  it('prints expected output', async () => {
     db.sequelize.sync({ force: true });
     const logSpy = jest.spyOn(console, 'log');
     initializeProcessArgs();
@@ -59,5 +60,5 @@ describe('tests for Main class', () => {
     expect(logSpy).toHaveBeenCalledWith(
       '0.06\n0.90\n87.00\n3.00\n0.30\n0.30\n5.00\n0.00\n0.00'
     );
-  }); */
+  });
 });
