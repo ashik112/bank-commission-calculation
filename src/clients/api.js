@@ -23,4 +23,5 @@ async function fetchCashOutConfiguration(userType) {
 module.exports = {
   fetchCashInConfiguration,
   fetchCashOutConfiguration,
+  BASE_URL,
 };
