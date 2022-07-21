@@ -1,4 +1,5 @@
 const axios = require('axios').default;
+// eslint-disable-next-line
 const MockAdapter = require('axios-mock-adapter');
 const { USER_TYPES } = require('../constants');
 const {
@@ -9,6 +10,7 @@ const {
 
 const mock = new MockAdapter(axios);
 
+// eslint-disable-next-line
 mock.onGet(`${BASE_URL}/cash-out/natural`).reply(200, {
   percents: 0.3,
   week_limit: {
@@ -17,6 +19,7 @@ mock.onGet(`${BASE_URL}/cash-out/natural`).reply(200, {
   },
 });
 
+// eslint-disable-next-line
 mock.onGet(`${BASE_URL}/cash-out/juridical`).reply(200, {
   percents: 0.3,
   min: {
@@ -25,6 +28,7 @@ mock.onGet(`${BASE_URL}/cash-out/juridical`).reply(200, {
   },
 });
 
+// eslint-disable-next-line
 mock.onGet(`${BASE_URL}/cash-in`).reply(200, {
   percents: 0.03,
   max: {
