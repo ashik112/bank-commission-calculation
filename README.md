@@ -1,5 +1,7 @@
 ﻿# Transaction Commission Fee Calculation
 
+![npm-test-workflow](https://github.com/ashik112/transaction-commission-calculation/actions/workflows/node-test-action.yml/badge.svg)
+
 Basic Cash In, Cash Out transaction commission fee calculation application using Node.
 
 ## Overview
