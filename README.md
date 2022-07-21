@@ -1,6 +1,6 @@
-﻿# Transaction Commission Calculation
+﻿# Transaction Commission Fee Calculation
 
-Basic Cash In, Cash Out transaction commission calculation application using Node.
+Basic Cash In, Cash Out transaction commission fee calculation application using Node.
 
 ## Overview
 
@@ -19,7 +19,7 @@ Getting configurations for cash in, cash out from live mock APIs. Calculating co
    npm install
    ```
 
-3. Database configs are in `.env`. Change according to your development environment.
+3. Database configs are in `.env`. If you want to use another database see [dialect specific documentation for Sequelize](https://sequelize.org/docs/v6/other-topics/dialect-specific-things/). Database related codes are under `src/db` directory. Change according to your development environment.
 
     ```bash
     DB_HOST='localhost'
