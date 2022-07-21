@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for models/users/User.js</title>
+    <title>Code coverage report for src/models/Main.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">models/users</a> User.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> Main.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.77% </span>
+                <span class="strong">60.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/62</span>
+                <span class='fraction'>34/56</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.77% </span>
+                <span class="strong">60.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/62</span>
+                <span class='fraction'>34/56</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -119,23 +119,7 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -169,86 +153,84 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Op, fn, col } = require('sequelize');
-const db = require('../../db');
-const { getFirsDayOfWeek } = require('../../utils/date');
-const Configuration = require('../Configuration');
-const DB = require('../DB');
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = require('fs');
+const { roundNumber } = require('../utils');
+// const { fetchCashInConfiguration } = require('../clients/api');
+// const { USER_TYPES } = require('../constants');
+const Configuration = require('./Configuration');
+const Transaction = require('./Transaction');
 &nbsp;
-/**
- *
- */
-class User {
-  constructor(params) {
-    this.userId = params.userId;
-    this.userType = params.userType;
+class Main {
+  /**
+   * Runs the application
+   */
+  async run<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    const inputJsonFilePath = this.getInputFilePath();</span>
+<span class="cstat-no" title="statement not covered" >    if (!inputJsonFilePath) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log('Please enter the path of the json file');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    await Configuration.init();</span>
+<span class="cstat-no" title="statement not covered" >    const commissions = [];</span>
+<span class="cstat-no" title="statement not covered" >    const transactions = this.getJsonData(inputJsonFilePath);</span>
+<span class="cstat-no" title="statement not covered" >    for (let i = 0; i &lt; transactions.length; i += 1) {</span>
+<span class="cstat-no" title="statement not covered" >      const transaction = transactions[i];</span>
+<span class="cstat-no" title="statement not covered" >      const transactionInstance = new Transaction(transaction);</span>
+<span class="cstat-no" title="statement not covered" >      // eslint-disable-next-line no-await-in-loop</span>
+<span class="cstat-no" title="statement not covered" >      await transactionInstance.init();</span>
+<span class="cstat-no" title="statement not covered" >      // eslint-disable-next-line no-await-in-loop</span>
+<span class="cstat-no" title="statement not covered" >      let commission = await transactionInstance.getCommissionFee();</span>
+<span class="cstat-no" title="statement not covered" >      commission = roundNumber(commission);</span>
+<span class="cstat-no" title="statement not covered" >      // this.printCommission(commission);</span>
+<span class="cstat-no" title="statement not covered" >      commissions.push(commission);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    this.printResult(commissions);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+&nbsp;
+  printResult(arr) {
+    if (arr &amp;&amp; arr.length &gt; 0) {
+      const commissions = arr.map((commission) =&gt; commission.toFixed(2));
+      console.log(commissions.join('\n'));
+    } else {
+      console.log('');
+    }
   }
 &nbsp;
-  /**
-   * Returns total transaction amount from first day of the week (Monday) to transaction date
-   * @param {*} date
-   * @param {*} transactionType ('cash_in' | 'cash_out')
-   * @returns
-   */
-  async getWeeklyTransactionAmount<span class="fstat-no" title="function not covered" >(date, type) {</span>
-<span class="cstat-no" title="statement not covered" >    const startDate = getFirsDayOfWeek(date);</span>
-<span class="cstat-no" title="statement not covered" >    const option = {</span>
-<span class="cstat-no" title="statement not covered" >      attributes: [[fn('sum', col('amount')), 'weekly_amount']],</span>
-<span class="cstat-no" title="statement not covered" >      raw: true,</span>
-<span class="cstat-no" title="statement not covered" >      group: ['user_id'],</span>
-<span class="cstat-no" title="statement not covered" >      where: {</span>
-<span class="cstat-no" title="statement not covered" >        user_id: this.userId,</span>
-<span class="cstat-no" title="statement not covered" >        type,</span>
-<span class="cstat-no" title="statement not covered" >        date: {</span>
-<span class="cstat-no" title="statement not covered" >          [Op.and]: {</span>
-<span class="cstat-no" title="statement not covered" >            [Op.gte]: startDate,</span>
-<span class="cstat-no" title="statement not covered" >            [Op.lte]: new Date(date),</span>
-<span class="cstat-no" title="statement not covered" >          },</span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-<span class="cstat-no" title="statement not covered" >      },</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      const data = await DB.findAll(db.Transactions, option);</span>
-<span class="cstat-no" title="statement not covered" >      if (data &amp;&amp; data.length &gt; 0 &amp;&amp; data[0].weekly_amount) {</span>
-<span class="cstat-no" title="statement not covered" >        return data[0].weekly_amount;</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      return null;</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >      console.log(e);</span>
-<span class="cstat-no" title="statement not covered" >      return null;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  getInputFilePath() {
+    const myArgs = process.argv.slice(2);
+    return myArgs[0];
+  }
 &nbsp;
-  async getCashOutConfig<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >    const config = Configuration.getCashOutByUserType(this.userType);</span>
-<span class="cstat-no" title="statement not covered" >    return config;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-&nbsp;
-  async getCashInConfig<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >    const config = Configuration.getCashInByUserType(this.userType);</span>
-<span class="cstat-no" title="statement not covered" >    return config;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  getJsonData(path) {
+    const rawData = fs.readFileSync(path);
+    return JSON.parse(rawData);
+  }
 }
 &nbsp;
-module.exports = User;
+module.exports = Main;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -256,7 +238,7 @@ module.exports = User;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-21T11:54:39.907Z
+                at 2022-07-21T12:12:54.408Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

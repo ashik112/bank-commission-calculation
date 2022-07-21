@@ -1,41 +1,24 @@
-const axios = require('axios').default;
+// const axios = require('axios').default;
 
 // eslint-disable-next-line
-const MockAdapter = require('axios-mock-adapter');
+// const MockAdapter = require('axios-mock-adapter');
 const { USER_TYPES, TRANSACTION_TYPE } = require('../constants');
-const { BASE_URL } = require('../clients/api');
+// const { BASE_URL } = require('../clients/api');
 const Configuration = require('./Configuration');
-
-const mock = new MockAdapter(axios);
-
-// eslint-disable-next-line
-mock.onGet(`${BASE_URL}/cash-out/natural`).reply(200, {
-  percents: 0.3,
-  week_limit: {
-    amount: 1000,
-    currency: 'EUR',
-  },
-});
-
-// eslint-disable-next-line
-mock.onGet(`${BASE_URL}/cash-out/juridical`).reply(200, {
-  percents: 0.3,
-  min: {
-    amount: 0.5,
-    currency: 'EUR',
-  },
-});
-
-// eslint-disable-next-line
-mock.onGet(`${BASE_URL}/cash-in`).reply(200, {
-  percents: 0.03,
-  max: {
-    amount: 5,
-    currency: 'EUR',
-  },
-});
+const axiosMock = require('../../tests/axios.mock');
+const db = require('../db');
 
 describe('tests for Configuration class', () => {
+  // eslint-disable-next-line jest/no-hooks
+  beforeAll(async () => {
+    axiosMock.restore();
+    await db.sequelize.sync({ force: true });
+  });
+  // eslint-disable-next-line jest/no-hooks
+  afterAll(async () => {
+    axiosMock.reset();
+    await db.sequelize.sync({ force: true });
+  });
   it('configuration object is defined', () => {
     expect(Configuration).toBeDefined();
   });
@@ -48,7 +31,6 @@ describe('tests for Configuration class', () => {
   });
   it('cash out config can be set', async () => {
     await Configuration.setCashOut();
-    console.log(Configuration.cashOut);
     expect(Configuration.cashOut).toStrictEqual({
       juridical: { percents: 0.3, min: { amount: 0.5, currency: 'EUR' } },
       natural: { percents: 0.3, week_limit: { amount: 1000, currency: 'EUR' } },
