@@ -4,7 +4,7 @@ Basic Cash In, Cash Out transaction commission calculation application using Nod
 
 ## Overview
 
-Performing...
+Getting configurations for cash in, cash out from live mock APIs. Calculating commission fee is kept generic depending on the configuration from APIs for both cash in and cash out.
 
 ## Requirements
 
@@ -48,6 +48,8 @@ Performing...
    ```
 
 ## Build
+
+1. `parcel` is used to build the application.
 
    ```bash
    npm run build
