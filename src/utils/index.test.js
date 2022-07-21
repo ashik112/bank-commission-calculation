@@ -11,7 +11,6 @@ describe('tests for utils', () => {
   });
   it('0.23 rounded to 0.3', () => {
     const result = roundNumber(0.23);
-    console.log({ result });
     expect(result).toBe(0.23);
   });
   it('0.023 rounded to 0.03', () => {
