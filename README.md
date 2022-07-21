@@ -4,7 +4,7 @@ Basic Cash In, Cash Out transaction commission fee calculation application using
 
 ## Overview
 
-Getting configurations for cash in, cash out from live mock APIs. Calculating commission fee is kept generic depending on the configuration from APIs for both cash in and cash out.
+Getting configurations for cash in, cash out from live mock APIs. Calculating commission fee is kept generic depending on the configuration from APIs for both cash in and cash out. See full specifications [here](https://gist.github.com/mariusbalcytis/9d8d2122fe005bd2c4e10720834bfe25).
 
 ## Requirements
 
