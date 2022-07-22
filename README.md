@@ -65,5 +65,6 @@ Getting configurations for cash in, cash out from live mock APIs. Calculating co
 
 ## Known limitations
 
-1. Exception handling in all edge cases
-2. More test cases for edge cases
+1. More exception handling in all edge cases
+2. More test coverage
+3. Null value handling
