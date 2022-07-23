@@ -6,7 +6,7 @@ Basic Cash In, Cash Out transaction commission fee calculation application using
 
 ## Overview
 
-Getting configurations for cash in, cash out from live mock APIs. Calculating commission fee is kept generic depending on the configuration from APIs for both cash in and cash out, and all types of users. Database resets on every run, considering there's no need to store old transaction history for the calculations at the moment. See full specifications [here](https://gist.github.com/mariusbalcytis/9d8d2122fe005bd2c4e10720834bfe25). 
+Getting configurations for cash in, cash out from live mock APIs. Calculating commission fee is kept generic depending on the configuration from APIs for both cash in and cash out, and all types of users. Database resets on every run, considering there's no need to store old transaction history for the calculations at the moment. Also, multiple currency aren't handled by the application as only supported currency is EUR.  See full specifications [here](https://gist.github.com/mariusbalcytis/9d8d2122fe005bd2c4e10720834bfe25). 
 
 ## Requirements
 
@@ -68,3 +68,4 @@ Getting configurations for cash in, cash out from live mock APIs. Calculating co
 1. More exception handling in all edge cases
 2. More test coverage
 3. Null value handling
+4. Multiple currency support 
